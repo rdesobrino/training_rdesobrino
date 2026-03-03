@@ -1,0 +1,66 @@
+---
+title: "intro"
+format: html
+bibliography: references.bib
+---
+
+# Introduction
+
+## About the data
+
+-   Water sample data from Arctic Ocean
+-   Data downloaded from the Arctic Data Center: [Tweedie ADC data](https://arcticdata.io/catalog/view/doi:10.18739/A25T3FZ8X)
+
+##Setup 
+###### use opt cmd I to insert code chunk
+
+```{r}
+#| warning: false 
+library(readr)
+library(here)
+```
+
+## Read in data
+
+```{r}
+#| warning: false
+bg_chem <- read_csv(here("data/BGchem2008data.csv"))
+```
+# Analysis
+```{r}
+#| eval: false
+#| echo: false
+
+# fx for printing column names 
+colnames(bg_chem)
+
+# show data structure
+str(bg_chem)
+
+# show first six lines
+head(bg_chem)
+
+# summary of each column
+summary(bg_chem)
+
+# print each unique value in the column
+unique(bg_chem$Date)
+```
+
+## b. Calculate mean Redfield ratio
+```{r}
+#calculate some means
+nitrate <- mean(bg_chem$NO3)
+nitrite <- mean(bg_chem$NO2)
+amn <- mean(bg_chem$NH4)
+phos <- mean(bg_chem$P)
+```
+
+## c. Plot Redfield ration
+```{r}
+ratio <- (nitrate + nitrite +amn) / phos
+```
+
+We calculated the ratio: `r round(ratio, 2)`
+
+
