@@ -6,3 +6,4 @@ dooten dooten
 
 ## How to Create a Git Repository
 Step 1: 
+editing the readme, committing but not pushing
